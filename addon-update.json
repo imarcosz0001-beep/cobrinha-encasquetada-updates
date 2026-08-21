@@ -1,7 +1,7 @@
 {
-  "version": "22",
-  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/ef408e9/Cobrinha-Encasquetada-v22.zip",
-  "notes": "Versão estável atual.",
+  "version": "22.1",
+  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/28ac380/Cobrinha-Encasquetada-v22.1.zip",
+  "notes": "Remove o aviso falso da Web Store e aplica o HUD minimalista somente durante a partida.",
   "enabled": true,
-  "published_at": "2026-08-21T00:00:00-03:00"
+  "published_at": "2026-08-20T22:13:10.9585831-03:00"
 }
