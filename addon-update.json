@@ -1,7 +1,7 @@
 {
-  "version": "22.4",
-  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/5c6dc0b4ceb26709409988ff1d88f48e257b3cb4/Cobrinha-Encasquetada-v22.4.zip",
-  "notes": "Bot mais defensivo e inteligente: percebe ameaças mais cedo, amplia a margem de segurança em alta velocidade, evita impulsos arriscados por comida e o BB agora ativa automaticamente o TT.",
+  "version": "23.0",
+  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/ec29debff2dc1a641df2a39fe99ac977c16a2a10/Cobrinha-Encasquetada-v23.0.zip",
+  "notes": "Primeira IA treinada da Cobrinha: modelo neural com 24 setores e 80 mil exemplos do simulador, integrado ao BB com o escudo anticolisão do TT.",
   "enabled": true,
-  "published_at": "2026-08-21T14:40:38.3354377-03:00"
+  "published_at": "2026-08-21T15:17:09.0362698-03:00"
 }
