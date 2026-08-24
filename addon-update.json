@@ -1,7 +1,7 @@
 {
-  "version": "23.0",
-  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/ec29debff2dc1a641df2a39fe99ac977c16a2a10/Cobrinha-Encasquetada-v23.0.zip",
-  "notes": "Primeira IA treinada da Cobrinha: modelo neural com 24 setores e 80 mil exemplos do simulador, integrado ao BB com o escudo anticolisão do TT.",
+  "version": "23.1",
+  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/d7a3ef26870cb292b2b593cf2bb6cbc44fcddd96/Cobrinha-Encasquetada-v23.1.zip",
+  "notes": "Novo Estúdio da Interface com perfis, aba View, editor visual estável, redefinição individual, backup, HUDs configuráveis, Ping/FPS compacto e sistema de amigos com seta direcional.",
   "enabled": true,
-  "published_at": "2026-08-21T15:17:09.0362698-03:00"
+  "published_at": "2026-08-23T23:27:05.6035221-03:00"
 }
