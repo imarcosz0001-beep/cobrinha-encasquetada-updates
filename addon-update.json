@@ -1,11 +1,11 @@
 {
-  "version": "23.2",
-  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/45422cf8ddda7bb8299331af87b62351f0d4a54d/Cobrinha-Encasquetada-v23.2.zip",
-  "sha256": "8F93992201253D20F9FD97517351814B113CEC618837AFA6DC376E8227C257E3",
-  "previous_version": "23.1",
-  "previous_download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/d7a3ef26870cb292b2b593cf2bb6cbc44fcddd96/Cobrinha-Encasquetada-v23.1.zip",
-  "previous_sha256": "4F89BE23DB8F8A0A20C7AF9068C861DC942D1C61CB751929E30A23A92BEE2F2D",
-  "notes": "Segurança reforçada, novo domínio, onboarding, desfazer/refazer, redefinição seletiva, amigos com presença e interface responsiva.",
+  "version": "23.3",
+  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/dfd8402288c01a4b37cf2f9e82daa40d30bf75fc/Cobrinha-Encasquetada-v23.3.zip",
+  "sha256": "AA5489EB02E02240B5AF66180927B0DEFEC2F73B5F0ED69A4073834B92D6FDE5",
+  "previous_version": "23.2",
+  "previous_download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/45422cf8ddda7bb8299331af87b62351f0d4a54d/Cobrinha-Encasquetada-v23.2.zip",
+  "previous_sha256": "8F93992201253D20F9FD97517351814B113CEC618837AFA6DC376E8227C257E3",
+  "notes": "Corrige definitivamente o link de Notícias e informações para o novo site oficial da Cobrinha Encasquetada.",
   "enabled": true,
-  "published_at": "2026-08-24T19:16:13.6225881-03:00"
+  "published_at": "2026-08-24T19:34:26.4843980-03:00"
 }
