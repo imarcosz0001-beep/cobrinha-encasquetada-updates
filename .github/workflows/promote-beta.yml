@@ -1,0 +1,66 @@
+name: Promover Beta para Estável
+
+on:
+  workflow_dispatch:
+    inputs:
+      beta_version:
+        description: "Versão Beta exata (ex.: 23.5)"
+        required: true
+        type: string
+      confirmation:
+        description: "Digite PROMOVER para confirmar"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: promote-beta-to-stable
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    name: Validar e promover
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Baixar repositório oficial
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Validar Beta e preparar Estável
+        env:
+          EXPECTED_BETA_VERSION: ${{ inputs.beta_version }}
+          PROMOTION_CONFIRMATION: ${{ inputs.confirmation }}
+        run: node scripts/promote-beta.js
+
+      - name: Confirmar que apenas o manifesto Estável mudou
+        shell: bash
+        run: |
+          changed="$(git diff --name-only)"
+          test "$changed" = "addon-update.json" || {
+            echo "Arquivos inesperados alterados:"
+            echo "$changed"
+            exit 1
+          }
+
+      - name: Publicar para todos do canal Estável
+        shell: bash
+        env:
+          BETA_VERSION: ${{ inputs.beta_version }}
+        run: |
+          git config user.name "Cobrinha Release Bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add addon-update.json
+          git commit -m "Promove Beta v${BETA_VERSION} para Estável"
+          git push origin HEAD:main
+
+      - name: Resumo
+        shell: bash
+        env:
+          BETA_VERSION: ${{ inputs.beta_version }}
+        run: |
+          echo "## ✅ Beta v${BETA_VERSION} promovido para Estável" >> "$GITHUB_STEP_SUMMARY"
+          echo "O mesmo ZIP validado no canal Beta agora será oferecido aos usuários do canal Estável." >> "$GITHUB_STEP_SUMMARY"

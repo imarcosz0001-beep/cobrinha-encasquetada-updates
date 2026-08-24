@@ -1,0 +1,12 @@
+{
+  "channel": "beta",
+  "version": "23.4",
+  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/2fd95932c017784d4fa3a8a0d9fc89c641fef628/Cobrinha-Encasquetada-v23.4.zip",
+  "sha256": "5324631D7A24046E445B680A80AB69A9B15E1FBE786CA763FB91DDE7E80A6703",
+  "previous_version": "23.3",
+  "previous_download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/dfd8402288c01a4b37cf2f9e82daa40d30bf75fc/Cobrinha-Encasquetada-v23.3.zip",
+  "previous_sha256": "AA5489EB02E02240B5AF66180927B0DEFEC2F73B5F0ED69A4073834B92D6FDE5",
+  "notes": "Canal Beta preparado para validação antes da promoção ao canal Estável.",
+  "enabled": true,
+  "published_at": "2026-08-24T19:39:27.1696071-03:00"
+}
