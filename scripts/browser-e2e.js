@@ -12,6 +12,7 @@ if (process.env.COBRINHA_E2E !== "1") {
 }
 
 const root = process.env.COBRINHA_EXTENSION_ROOT ? path.resolve(process.env.COBRINHA_EXTENSION_ROOT) : path.resolve(__dirname, "..");
+const ciFixture = process.env.COBRINHA_CI_FIXTURE === "1";
 const browser = process.env.COBRINHA_BROWSER || [
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
   "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
@@ -23,12 +24,13 @@ assert.ok(browser && fs.existsSync(browser), "Chrome ou Edge não encontrado");
 
 const port = 9300 + Math.floor(Math.random() * 500);
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), "cobrinha-e2e-"));
+const startUrl = ciFixture ? "about:blank" : "http://slither.io/";
 const child = spawn(browser, [
   "--headless=new", "--no-sandbox", "--no-first-run", "--no-default-browser-check", "--disable-gpu",
   "--enable-extensions", "--disable-features=DisableLoadExtensionCommandLineSwitch",
   `--remote-debugging-port=${port}`, "--remote-allow-origins=*",
   `--user-data-dir=${profile}`, `--disable-extensions-except=${root}`, `--load-extension=${root}`,
-  "http://slither.io/"
+  startUrl
 ], { stdio: process.env.GITHUB_ACTIONS === "true" ? "inherit" : "ignore" });
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -44,7 +46,7 @@ async function target() {
   while (Date.now() < deadline) {
     try {
       const targets = await json(`http://127.0.0.1:${port}/json/list`);
-      const page = targets.find((item) => item.type === "page" && /slither\.(?:io|com)/.test(item.url));
+      const page = targets.find((item) => item.type === "page" && (ciFixture ? item.url === "about:blank" : /slither\.(?:io|com)/.test(item.url)));
       if (page) return page;
     } catch (error) {}
     await delay(250);
@@ -56,6 +58,7 @@ class Cdp {
   constructor(url) {
     this.id = 0;
     this.pending = new Map();
+    this.handlers = new Map();
     this.socket = new WebSocket(url);
   }
   async open() {
@@ -66,6 +69,10 @@ class Cdp {
     });
     this.socket.addEventListener("message", (event) => {
       const message = JSON.parse(event.data);
+      if (message.method && this.handlers.has(message.method)) {
+        Promise.resolve(this.handlers.get(message.method)(message.params || {})).catch(() => {});
+        return;
+      }
       if (!message.id || !this.pending.has(message.id)) return;
       const pending = this.pending.get(message.id);
       this.pending.delete(message.id);
@@ -73,6 +80,7 @@ class Cdp {
       else pending.resolve(message.result);
     });
   }
+  on(method, handler) { this.handlers.set(method, handler); }
   call(method, params = {}) {
     const id = ++this.id;
     return new Promise((resolve, reject) => {
@@ -104,6 +112,26 @@ async function waitFor(cdp, expression, timeout = 25000) {
     cdp = new Cdp(page.webSocketDebuggerUrl);
     await cdp.open();
     await cdp.call("Runtime.enable");
+
+    if (ciFixture) {
+      const fixture = '<!doctype html><html><head><meta charset="utf-8"><title>Slither CI</title></head><body>' +
+        '<div id="login" style="display:block;width:500px;height:500px"><input id="nick"><div id="settpage"><table><tbody>' +
+        '<tr><td>Sala</td><td><input id="in_tidkey"></td></tr><tr><td>Auth</td><td><input id="in_authkey"></td></tr>' +
+        '<tr><td>Apelido</td><td><input id="in_comkey"></td></tr><tr><td colspan="2"><button id="loadkeys">Criar</button><button id="savekeys">Entrar</button><button id="noteam">Sair</button></td></tr>' +
+        '</tbody></table></div></div><div id="mmap" style="position:fixed;width:104px;height:104px"></div></body></html>';
+      cdp.on("Fetch.requestPaused", async (params) => {
+        await cdp.call("Fetch.fulfillRequest", {
+          requestId: params.requestId,
+          responseCode: 200,
+          responseHeaders: [{ name: "Content-Type", value: "text/html; charset=utf-8" }],
+          body: Buffer.from(fixture).toString("base64")
+        });
+      });
+      await cdp.call("Fetch.enable", { patterns: [{ urlPattern: "*://slither.io/*", resourceType: "Document", requestStage: "Request" }] });
+      await cdp.call("Page.enable");
+      await cdp.call("Page.navigate", { url: "https://slither.io/" });
+      assert.ok(await waitFor(cdp, "document.readyState === 'complete'", 15000), "Documento local do Slither não abriu");
+    }
 
     assert.ok(await waitFor(cdp, "Boolean(document.body && document.documentElement.dataset.cobrinhaSafeMode != null)"), "Base da extensão não iniciou");
     assert.ok(await waitFor(cdp, "Boolean(document.getElementById('cobrinha-layout-gear'))"), "Menu de interface não carregou");

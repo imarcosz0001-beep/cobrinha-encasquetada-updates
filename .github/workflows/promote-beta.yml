@@ -53,6 +53,7 @@ jobs:
       - name: Abrir o ZIP Beta no navegador real
         env:
           COBRINHA_E2E: "1"
+          COBRINHA_CI_FIXTURE: "1"
           COBRINHA_EXTENSION_ROOT: .beta-extension
         run: node scripts/browser-e2e.js
 
