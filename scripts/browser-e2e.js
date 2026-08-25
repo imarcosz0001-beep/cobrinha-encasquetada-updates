@@ -135,6 +135,13 @@ async function waitFor(cdp, expression, timeout = 25000) {
 
     assert.ok(await waitFor(cdp, "Boolean(document.body && document.documentElement.dataset.cobrinhaSafeMode != null)"), "Base da extensão não iniciou");
     assert.ok(await waitFor(cdp, "Boolean(document.getElementById('cobrinha-layout-gear'))"), "Menu de interface não carregou");
+    assert.ok(await waitFor(cdp, "Boolean(window.CobrinhaDeviceIdentity)"), "Identidade segura do dispositivo não carregou");
+    const secureIdentity = await cdp.evaluate(`window.CobrinhaDeviceIdentity.ready.then((value) => ({
+      clientId: value.clientId,
+      hasPrivateKey: Boolean(localStorage.getItem('cobrinhaIdentitySecretJwkV1'))
+    }))`);
+    assert.match(secureIdentity.clientId, /^ce1-[A-Za-z0-9_-]{43}$/, "Fingerprint segura inválida no navegador");
+    assert.strictEqual(secureIdentity.hasPrivateKey, true, "Identidade segura não persistiu no dispositivo");
 
     const onboardingReady = await waitFor(cdp, "Boolean(document.getElementById('cobrinha-onboarding') && !document.getElementById('cobrinha-onboarding').hidden)", 12000);
     if (onboardingReady) {
