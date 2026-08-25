@@ -12,6 +12,7 @@ const stablePath = path.join(root, "addon-update.json");
 const expectedVersion = String(process.env.EXPECTED_BETA_VERSION || "").trim();
 const confirmation = String(process.env.PROMOTION_CONFIRMATION || "").trim();
 const testRoot = String(process.env.BETA_TEST_ROOT || "").trim();
+const validateOnly = process.env.VALIDATE_ONLY === "1";
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -93,5 +94,9 @@ const promoted = {
   published_at: new Date().toISOString()
 };
 
-fs.writeFileSync(stablePath, `${JSON.stringify(promoted, null, 2)}\n`, "utf8");
-console.log(`Beta ${beta.version} validado e preparado para o canal Estável.`);
+if (validateOnly) {
+  console.log(`Beta ${beta.version} validado sem alterar o canal Estável.`);
+} else {
+  fs.writeFileSync(stablePath, `${JSON.stringify(promoted, null, 2)}\n`, "utf8");
+  console.log(`Beta ${beta.version} validado e preparado para o canal Estável.`);
+}
