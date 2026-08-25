@@ -28,8 +28,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Identificar a versão Beta
-        shell: bash
-        run: echo "BETA_VERSION=$(node -p \"require('./addon-update-beta.json').version\")" >> "$GITHUB_ENV"
+        run: node -e "const fs=require('fs'); const beta=JSON.parse(fs.readFileSync('addon-update-beta.json','utf8')); fs.appendFileSync(process.env.GITHUB_ENV, 'BETA_VERSION=' + beta.version + '\n')"
 
       - name: Baixar, conferir e extrair o ZIP imutável
         env:
