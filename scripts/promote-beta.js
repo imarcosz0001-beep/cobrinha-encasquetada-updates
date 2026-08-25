@@ -11,6 +11,7 @@ const betaPath = path.join(root, "addon-update-beta.json");
 const stablePath = path.join(root, "addon-update.json");
 const expectedVersion = String(process.env.EXPECTED_BETA_VERSION || "").trim();
 const confirmation = String(process.env.PROMOTION_CONFIRMATION || "").trim();
+const testRoot = String(process.env.BETA_TEST_ROOT || "").trim();
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -69,6 +70,13 @@ try {
     encoding: "utf8"
   }));
   assert.equal(internalManifest.version, beta.version, "A versão interna do ZIP diverge do Beta");
+  if (testRoot) {
+    const destination = path.resolve(root, testRoot);
+    assert.ok(destination.startsWith(root + path.sep), "Diretório de teste fora do repositório");
+    fs.rmSync(destination, { recursive: true, force: true });
+    fs.mkdirSync(destination, { recursive: true });
+    execFileSync("unzip", ["-q", temporaryZip, "-d", destination], { stdio: "inherit" });
+  }
 } finally {
   fs.rmSync(temporaryZip, { force: true });
 }

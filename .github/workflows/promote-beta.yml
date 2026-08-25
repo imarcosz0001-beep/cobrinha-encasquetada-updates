@@ -34,7 +34,24 @@ jobs:
         env:
           EXPECTED_BETA_VERSION: ${{ inputs.beta_version }}
           PROMOTION_CONFIRMATION: ${{ inputs.confirmation }}
+          BETA_TEST_ROOT: .beta-extension
         run: node scripts/promote-beta.js
+
+      - name: Testar o ZIP Beta no navegador real
+        env:
+          COBRINHA_EXTENSION_ROOT: .beta-extension
+        run: node scripts/validate-extension.js
+
+      - name: Abrir o ZIP Beta no navegador real
+        env:
+          COBRINHA_E2E: "1"
+          COBRINHA_EXTENSION_ROOT: .beta-extension
+        run: node scripts/browser-e2e.js
+
+      - name: Limpar arquivos temporários
+        if: always()
+        shell: bash
+        run: rm -rf .beta-extension .promotion-*.zip
 
       - name: Confirmar que apenas o manifesto Estável mudou
         shell: bash
