@@ -1,12 +1,12 @@
 {
   "channel": "beta",
-  "version": "23.5",
-  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/d2cf56fd6d27627daa553ba38ad0e299bc637377/Cobrinha-Encasquetada-v23.5.zip",
-  "sha256": "89A1888C2CCE6D7EFA5CC262FA3580983ECF13A41040BA8A4E02D8765DE910E5",
-  "previous_version": "23.4",
-  "previous_download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/2fd95932c017784d4fa3a8a0d9fc89c641fef628/Cobrinha-Encasquetada-v23.4.zip",
-  "previous_sha256": "5324631D7A24046E445B680A80AB69A9B15E1FBE786CA763FB91DDE7E80A6703",
-  "notes": "Interface de configurações reorganizada; backup e restauração completos; monitor de salas, presença e chat; melhorias de acessibilidade e textos; testes automáticos reforçados para a promoção ao Estável.",
+  "version": "23.6",
+  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/8d3bd10802fdf2ac68181cd1824b0e6b861d1623/Cobrinha-Encasquetada-v23.6.zip",
+  "sha256": "1B8D1DAE43EE14CBD55DFBE71EFF13FBD68723E5038C5A4A1A1AAA5EA3D1AE8B",
+  "previous_version": "23.5",
+  "previous_download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/d2cf56fd6d27627daa553ba38ad0e299bc637377/Cobrinha-Encasquetada-v23.5.zip",
+  "previous_sha256": "89A1888C2CCE6D7EFA5CC262FA3580983ECF13A41040BA8A4E02D8765DE910E5",
+  "notes": "Segurança reforçada na equipe e nos amigos: identidade assinada do dispositivo, proteção contra falsificação, limites anti-spam e envio voluntário de diagnóstico sem dados pessoais.",
   "enabled": true,
-  "published_at": "2026-08-24T23:15:08.2860790-03:00"
+  "published_at": "2026-08-25T14:49:48.2318571-03:00"
 }

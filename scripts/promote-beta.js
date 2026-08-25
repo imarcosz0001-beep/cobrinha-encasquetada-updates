@@ -49,8 +49,16 @@ if (!validateOnly) {
 
 assert.equal(beta.channel, "beta", "O manifesto Beta não identifica o canal beta");
 assert.equal(beta.enabled, true, "O canal Beta está desativado");
-assert.ok(compareVersions(beta.version, stable.version) > 0,
-  `O Beta ${beta.version} deve ser superior ao Estável ${stable.version}`);
+const channelComparison = compareVersions(beta.version, stable.version);
+if (validateOnly && channelComparison === 0) {
+  assert.equal(beta.download_url, stable.download_url,
+    "Beta e Estável na mesma versão devem apontar para o mesmo pacote");
+  assert.equal(beta.sha256, stable.sha256,
+    "Beta e Estável na mesma versão devem possuir o mesmo SHA-256");
+} else {
+  assert.ok(channelComparison > 0,
+    `O Beta ${beta.version} deve ser superior ao Estável ${stable.version}`);
+}
 assert.match(beta.sha256, /^[A-F0-9]{64}$/, "SHA-256 Beta inválido");
 
 const url = new URL(beta.download_url);
