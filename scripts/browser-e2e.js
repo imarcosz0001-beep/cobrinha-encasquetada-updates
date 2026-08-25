@@ -13,11 +13,12 @@ if (process.env.COBRINHA_E2E !== "1") {
 
 const root = process.env.COBRINHA_EXTENSION_ROOT ? path.resolve(process.env.COBRINHA_EXTENSION_ROOT) : path.resolve(__dirname, "..");
 const browser = process.env.COBRINHA_BROWSER || [
+  "/usr/bin/chromium", "/usr/bin/chromium-browser",
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
   "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
   "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
   "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe",
-  "/usr/bin/google-chrome", "/usr/bin/google-chrome-stable", "/usr/bin/chromium", "/usr/bin/chromium-browser"
+  "/usr/bin/google-chrome", "/usr/bin/google-chrome-stable"
 ].find(fs.existsSync);
 assert.ok(browser && fs.existsSync(browser), "Chrome ou Edge não encontrado");
 
@@ -25,6 +26,7 @@ const port = 9300 + Math.floor(Math.random() * 500);
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), "cobrinha-e2e-"));
 const child = spawn(browser, [
   "--headless=new", "--no-first-run", "--no-default-browser-check", "--disable-gpu",
+  "--enable-extensions", "--disable-features=DisableLoadExtensionCommandLineSwitch",
   `--remote-debugging-port=${port}`, "--remote-allow-origins=*",
   `--user-data-dir=${profile}`, `--disable-extensions-except=${root}`, `--load-extension=${root}`,
   "http://slither.io/"
