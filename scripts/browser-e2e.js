@@ -212,5 +212,8 @@ async function waitFor(cdp, expression, timeout = 25000) {
   }
 })().catch((error) => {
   console.error(error.stack || error);
+  const annotation = String(error && error.message || error || "Falha desconhecida")
+    .replace(/%/g, "%25").replace(/\r/g, "%0D").replace(/\n/g, "%0A");
+  if (process.env.GITHUB_ACTIONS === "true") console.log(`::error title=Falha no navegador Beta::${annotation}`);
   process.exitCode = 1;
 });
