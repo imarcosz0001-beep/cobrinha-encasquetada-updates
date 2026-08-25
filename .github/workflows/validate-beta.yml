@@ -42,6 +42,14 @@ jobs:
           COBRINHA_EXTENSION_ROOT: .beta-extension
         run: node scripts/validate-extension.js
 
+      - name: Preparar Chrome for Testing
+        shell: bash
+        run: |
+          npx --yes @puppeteer/browsers@3.2.1 install chrome@stable --path .ci-browser
+          browser="$(find "$PWD/.ci-browser" -type f -name chrome -perm -111 | head -n 1)"
+          test -n "$browser"
+          echo "COBRINHA_BROWSER=$browser" >> "$GITHUB_ENV"
+
       - name: Abrir a extensão no navegador real
         env:
           COBRINHA_E2E: "1"
@@ -51,7 +59,7 @@ jobs:
       - name: Limpar arquivos temporários
         if: always()
         shell: bash
-        run: rm -rf .beta-extension .promotion-*.zip
+        run: rm -rf .beta-extension .ci-browser .promotion-*.zip
 
       - name: Resumo
         if: success()
