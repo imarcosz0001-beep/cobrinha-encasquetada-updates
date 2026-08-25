@@ -38,15 +38,17 @@ function sha256(file) {
   return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex").toUpperCase();
 }
 
-assert.equal(confirmation, "PROMOVER", "Confirmação inválida: digite PROMOVER");
-assert.ok(expectedVersion, "Informe a versão Beta que será promovida");
-
 const beta = readJson(betaPath);
 const stable = readJson(stablePath);
 
+if (!validateOnly) {
+  assert.equal(confirmation, "PROMOVER", "Confirmação inválida: digite PROMOVER");
+  assert.ok(expectedVersion, "Informe a versão Beta que será promovida");
+  assert.equal(beta.version, expectedVersion, "A versão informada não corresponde ao Beta publicado");
+}
+
 assert.equal(beta.channel, "beta", "O manifesto Beta não identifica o canal beta");
 assert.equal(beta.enabled, true, "O canal Beta está desativado");
-assert.equal(beta.version, expectedVersion, "A versão informada não corresponde ao Beta publicado");
 assert.ok(compareVersions(beta.version, stable.version) > 0,
   `O Beta ${beta.version} deve ser superior ao Estável ${stable.version}`);
 assert.match(beta.sha256, /^[A-F0-9]{64}$/, "SHA-256 Beta inválido");
