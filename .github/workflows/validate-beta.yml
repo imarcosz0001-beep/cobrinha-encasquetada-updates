@@ -31,12 +31,8 @@ jobs:
         run: node -e "const fs=require('fs'); const beta=JSON.parse(fs.readFileSync('addon-update-beta.json','utf8')); fs.appendFileSync(process.env.GITHUB_ENV, 'BETA_VERSION=' + beta.version + '\n')"
 
       - name: Baixar, conferir e extrair o ZIP imutável
-        env:
-          EXPECTED_BETA_VERSION: ${{ env.BETA_VERSION }}
-          PROMOTION_CONFIRMATION: PROMOVER
-          VALIDATE_ONLY: "1"
-          BETA_TEST_ROOT: .beta-extension
-        run: node scripts/promote-beta.js
+        shell: bash
+        run: EXPECTED_BETA_VERSION="$BETA_VERSION" PROMOTION_CONFIRMATION=PROMOVER VALIDATE_ONLY=1 BETA_TEST_ROOT=.beta-extension node scripts/promote-beta.js
 
       - name: Validar segurança e recursos
         env:
