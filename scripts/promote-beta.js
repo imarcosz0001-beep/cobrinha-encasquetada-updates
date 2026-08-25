@@ -75,7 +75,11 @@ const packageZip = path.join(root, `Cobrinha-Encasquetada-v${beta.version}.zip`)
 assert.ok(fs.existsSync(packageZip), "O ZIP Beta não está versionado no repositório oficial");
 assert.equal(sha256(packageZip), beta.sha256, "O SHA-256 do ZIP não corresponde ao manifesto Beta");
 
-const internalManifest = JSON.parse(execFileSync("unzip", ["-p", packageZip, "manifest.json"], {
+const archiveTool = process.platform === "win32" ? "tar" : "unzip";
+const manifestArgs = process.platform === "win32"
+  ? ["-xOf", packageZip, "manifest.json"]
+  : ["-p", packageZip, "manifest.json"];
+const internalManifest = JSON.parse(execFileSync(archiveTool, manifestArgs, {
   encoding: "utf8"
 }));
 assert.equal(internalManifest.version, beta.version, "A versão interna do ZIP diverge do Beta");
@@ -85,7 +89,10 @@ if (testRoot) {
   fs.rmSync(destination, { recursive: true, force: true });
   fs.mkdirSync(destination, { recursive: true });
   try {
-    execFileSync("unzip", ["-q", packageZip, "-d", destination], { stdio: "inherit" });
+    const extractArgs = process.platform === "win32"
+      ? ["-xf", packageZip, "-C", destination]
+      : ["-q", packageZip, "-d", destination];
+    execFileSync(archiveTool, extractArgs, { stdio: "inherit" });
   } catch (error) {
     if (!fs.existsSync(path.join(destination, "manifest.json"))) throw error;
     console.warn("O extrator informou avisos de compatibilidade; os arquivos serão validados individualmente.");
