@@ -76,7 +76,12 @@ if (testRoot) {
   assert.ok(destination.startsWith(root + path.sep), "Diretório de teste fora do repositório");
   fs.rmSync(destination, { recursive: true, force: true });
   fs.mkdirSync(destination, { recursive: true });
-  execFileSync("unzip", ["-q", packageZip, "-d", destination], { stdio: "inherit" });
+  try {
+    execFileSync("unzip", ["-q", packageZip, "-d", destination], { stdio: "inherit" });
+  } catch (error) {
+    if (!fs.existsSync(path.join(destination, "manifest.json"))) throw error;
+    console.warn("O extrator informou avisos de compatibilidade; os arquivos serão validados individualmente.");
+  }
 }
 
 const promoted = {
