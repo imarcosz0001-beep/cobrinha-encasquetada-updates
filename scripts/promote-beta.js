@@ -61,25 +61,20 @@ assert.match(segments[2] || "", /^[a-f0-9]{40}$/i, "A URL Beta deve apontar para
 assert.equal(segments.slice(3).join("/"), `Cobrinha-Encasquetada-v${beta.version}.zip`,
   "Nome do pacote Beta inesperado");
 
-const temporaryZip = path.join(root, `.promotion-${process.pid}.zip`);
-try {
-  execFileSync("curl", ["--fail", "--location", "--silent", "--show-error", beta.download_url,
-    "--output", temporaryZip], { stdio: "inherit" });
-  assert.equal(sha256(temporaryZip), beta.sha256, "O SHA-256 do ZIP não corresponde ao manifesto Beta");
+const packageZip = path.join(root, `Cobrinha-Encasquetada-v${beta.version}.zip`);
+assert.ok(fs.existsSync(packageZip), "O ZIP Beta não está versionado no repositório oficial");
+assert.equal(sha256(packageZip), beta.sha256, "O SHA-256 do ZIP não corresponde ao manifesto Beta");
 
-  const internalManifest = JSON.parse(execFileSync("unzip", ["-p", temporaryZip, "manifest.json"], {
-    encoding: "utf8"
-  }));
-  assert.equal(internalManifest.version, beta.version, "A versão interna do ZIP diverge do Beta");
-  if (testRoot) {
-    const destination = path.resolve(root, testRoot);
-    assert.ok(destination.startsWith(root + path.sep), "Diretório de teste fora do repositório");
-    fs.rmSync(destination, { recursive: true, force: true });
-    fs.mkdirSync(destination, { recursive: true });
-    execFileSync("unzip", ["-q", temporaryZip, "-d", destination], { stdio: "inherit" });
-  }
-} finally {
-  fs.rmSync(temporaryZip, { force: true });
+const internalManifest = JSON.parse(execFileSync("unzip", ["-p", packageZip, "manifest.json"], {
+  encoding: "utf8"
+}));
+assert.equal(internalManifest.version, beta.version, "A versão interna do ZIP diverge do Beta");
+if (testRoot) {
+  const destination = path.resolve(root, testRoot);
+  assert.ok(destination.startsWith(root + path.sep), "Diretório de teste fora do repositório");
+  fs.rmSync(destination, { recursive: true, force: true });
+  fs.mkdirSync(destination, { recursive: true });
+  execFileSync("unzip", ["-q", packageZip, "-d", destination], { stdio: "inherit" });
 }
 
 const promoted = {
