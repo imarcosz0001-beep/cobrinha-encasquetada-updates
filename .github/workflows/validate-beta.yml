@@ -8,6 +8,7 @@ on:
       - addon-update-beta.json
       - .github/workflows/validate-beta.yml
       - scripts/promote-beta.js
+      - scripts/run-beta-validation.js
       - scripts/browser-e2e.js
       - scripts/validate-extension.js
 
@@ -34,7 +35,7 @@ jobs:
         env:
           VALIDATE_ONLY: "1"
           BETA_TEST_ROOT: .beta-extension
-        run: node scripts/promote-beta.js
+        run: node scripts/run-beta-validation.js
 
       - name: Validar segurança e recursos
         env:
