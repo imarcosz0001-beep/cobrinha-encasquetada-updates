@@ -1,0 +1,14 @@
+# Este repositório público deve conter somente pacotes e manifestos de atualização.
+# O código-fonte completo pertence exclusivamente ao repositório privado.
+extension-src/
+.beta-extension/
+.ci-browser/
+.beta-build.json
+promotion-*.zip
+
+# Scripts/workflows de publicação são mantidos no repositório privado. Os arquivos
+# já rastreados aqui continuam versionados; novas cópias acidentais ficam bloqueadas.
+scripts/build-beta.js
+scripts/finalize-beta.js
+.github/workflows/publish-beta.yml
+

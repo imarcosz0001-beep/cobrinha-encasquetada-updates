@@ -1,0 +1,23 @@
+name: Limite do repositório público
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  boundary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Impedir vazamento do código-fonte
+        shell: bash
+        run: |
+          forbidden="$(git ls-files | grep -E '^(extension-src/|src/|node_modules/|\.env($|\.))' || true)"
+          test -z "$forbidden" || { echo "$forbidden"; echo "Código-fonte ou segredo detectado no repositório público"; exit 1; }
+      - name: Validar manifestos de atualização
+        run: |
+          node -e "for (const f of ['addon-update.json','addon-update-beta.json']) { const m=require('./'+f); if(!/^\\d+\\.\\d+/.test(m.version)||!/^[A-F0-9]{64}$/.test(m.sha256)||!m.download_url.includes('/cobrinha-encasquetada-updates/')) throw new Error('Manifesto inválido: '+f) }"
