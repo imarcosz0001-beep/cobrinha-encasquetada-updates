@@ -1,11 +1,11 @@
 {
-  "version": "23.8",
-  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/31b04a8cad9304f58402848217877d9c92431db0/Cobrinha-Encasquetada-v23.8.zip",
-  "sha256": "D2CA2760F49CEF76AB3732B691C8C20D9DD505CF3097C206759A0B46806E8E57",
-  "previous_version": "23.7",
-  "previous_download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/0b94c23bd4e181fd3f09c121d2cae9b80e599973/Cobrinha-Encasquetada-v23.7.zip",
-  "previous_sha256": "863B67C900E71DD528E6F5549C744A9B86A8C7732ABF5EC60BEDC03B47698B45",
-  "notes": "Central de Amigos em botão próprio, com abas, campos de convite integrados, cópia alternativa quando o navegador bloqueia a área de transferência e mensagens claras para criar, adicionar e revogar.",
+  "version": "23.9",
+  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/c67710db714021ca4b876862cb05196c4dff93bf/Cobrinha-Encasquetada-v23.9.zip",
+  "sha256": "8A91816EB19E8221F670D61D6A5DC4E7EAD5E6E5555F6707EC35FB612D49E776",
+  "previous_version": "23.8",
+  "previous_download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/31b04a8cad9304f58402848217877d9c92431db0/Cobrinha-Encasquetada-v23.8.zip",
+  "previous_sha256": "D2CA2760F49CEF76AB3732B691C8C20D9DD505CF3097C206759A0B46806E8E57",
+  "notes": "Manual pesquisável dentro do jogo, configuração centralizada, segurança contínua e melhorias de confiabilidade e manutenção.",
   "enabled": true,
-  "published_at": "2026-08-25T17:20:09.7131888-03:00"
+  "published_at": "2026-08-26T21:10:15.772Z"
 }
