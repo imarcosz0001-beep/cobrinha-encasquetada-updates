@@ -1,11 +1,11 @@
 {
-  "version": "23.10",
-  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/cf6131fd17a98a76177b5f2984955c128fe9a241/Cobrinha-Encasquetada-v23.10.zip",
-  "sha256": "DFB18418A585BD3F2592E3E0B5EB7C9E56753A61401ED7FBC6AF2FD49E358A43",
-  "previous_version": "23.9",
-  "previous_download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/c67710db714021ca4b876862cb05196c4dff93bf/Cobrinha-Encasquetada-v23.9.zip",
-  "previous_sha256": "8A91816EB19E8221F670D61D6A5DC4E7EAD5E6E5555F6707EC35FB612D49E776",
-  "notes": "Restaura a lista lateral da sala e a Central de Amigos mesmo quando o Slither bloqueia scripts injetados.",
+  "version": "23.11",
+  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/574fd42e9d09ba87ad6de4b3fc704c2881246d58/Cobrinha-Encasquetada-v23.11.zip",
+  "sha256": "E889480EFF1E132F5BDC9039B114C39FFB5E38FFF42479B7C30128482FF661EB",
+  "previous_version": "23.10",
+  "previous_download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/cf6131fd17a98a76177b5f2984955c128fe9a241/Cobrinha-Encasquetada-v23.10.zip",
+  "previous_sha256": "DFB18418A585BD3F2592E3E0B5EB7C9E56753A61401ED7FBC6AF2FD49E358A43",
+  "notes": "Mantém a Equipe no tamanho mínimo correto e restaura Entrar no servidor na Central de Amigos.",
   "enabled": true,
-  "published_at": "2026-08-29T22:01:43.035Z"
+  "published_at": "2026-08-29T22:21:57.968Z"
 }
