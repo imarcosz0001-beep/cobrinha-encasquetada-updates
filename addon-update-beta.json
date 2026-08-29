@@ -1,12 +1,12 @@
 {
   "channel": "beta",
-  "version": "23.12",
-  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/fc56c10ae4b7c1e1e9979480260e590dce774863/Cobrinha-Encasquetada-v23.12.zip",
-  "sha256": "329CC46F1AF5D15D6E4B912907FAAC0FC7B9E1E5640137F7858314934EC199C9",
-  "previous_version": "23.11",
-  "previous_download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/574fd42e9d09ba87ad6de4b3fc704c2881246d58/Cobrinha-Encasquetada-v23.11.zip",
-  "previous_sha256": "E889480EFF1E132F5BDC9039B114C39FFB5E38FFF42479B7C30128482FF661EB",
-  "notes": "Adiciona tamanho, opacidade e opções de equipe, rótulo e proximidade para a seta de navegação.",
+  "version": "23.13",
+  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/f640cc27adbc9c0d29d83449c54effce66bae66a/Cobrinha-Encasquetada-v23.13.zip",
+  "sha256": "05841497750AF3EABD22CA63AE6DDD6B303AFE2F5CF8DCC4262BF574A094EAB4",
+  "previous_version": "23.12",
+  "previous_download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/fc56c10ae4b7c1e1e9979480260e590dce774863/Cobrinha-Encasquetada-v23.12.zip",
+  "previous_sha256": "329CC46F1AF5D15D6E4B912907FAAC0FC7B9E1E5640137F7858314934EC199C9",
+  "notes": "Adiciona acesso independente às configurações da seta, inclusive durante a partida.",
   "enabled": true,
-  "published_at": "2026-08-29T20:05:00-03:00"
+  "published_at": "2026-08-29T20:24:00-03:00"
 }
