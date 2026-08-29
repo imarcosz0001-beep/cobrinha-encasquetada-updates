@@ -1,11 +1,11 @@
 {
-  "version": "23.11",
-  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/574fd42e9d09ba87ad6de4b3fc704c2881246d58/Cobrinha-Encasquetada-v23.11.zip",
-  "sha256": "E889480EFF1E132F5BDC9039B114C39FFB5E38FFF42479B7C30128482FF661EB",
-  "previous_version": "23.10",
-  "previous_download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/cf6131fd17a98a76177b5f2984955c128fe9a241/Cobrinha-Encasquetada-v23.10.zip",
-  "previous_sha256": "DFB18418A585BD3F2592E3E0B5EB7C9E56753A61401ED7FBC6AF2FD49E358A43",
-  "notes": "Mantém a Equipe no tamanho mínimo correto e restaura Entrar no servidor na Central de Amigos.",
+  "version": "23.12",
+  "download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/fc56c10ae4b7c1e1e9979480260e590dce774863/Cobrinha-Encasquetada-v23.12.zip",
+  "sha256": "329CC46F1AF5D15D6E4B912907FAAC0FC7B9E1E5640137F7858314934EC199C9",
+  "previous_version": "23.11",
+  "previous_download_url": "https://raw.githubusercontent.com/imarcosz0001-beep/cobrinha-encasquetada-updates/574fd42e9d09ba87ad6de4b3fc704c2881246d58/Cobrinha-Encasquetada-v23.11.zip",
+  "previous_sha256": "E889480EFF1E132F5BDC9039B114C39FFB5E38FFF42479B7C30128482FF661EB",
+  "notes": "Adiciona tamanho, opacidade e opções de equipe, rótulo e proximidade para a seta de navegação.",
   "enabled": true,
-  "published_at": "2026-08-29T22:21:57.968Z"
+  "published_at": "2026-08-29T22:35:28.086Z"
 }
